@@ -21,7 +21,7 @@
 
 > 建议在桌面或手机浏览器中打开，配合电子乐或人声体验最佳。
 
-| 驻波形态 1 | 驻波形态 2 | 控制面板 |
+| 驻波形态 1 | 控制面板 | 驻波形态 2 |
 |:----------:|:----------:|:--------:|
 | <img src="./assets/screenshot-shape-1.png" width="240"> | <img src="./assets/screenshot-shape-2.png" width="240"> | <img src="./assets/screenshot-controls.png" width="240"> |
 
