@@ -1,0 +1,16 @@
+{
+  "name": "sound-visualizer",
+  "version": "1.0.0",
+  "description": "浏览器端克拉尼声纹可视化 — 以粒子驻波响应声音，支持六种几何形态与实时音频驱动",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "echo \"Tests: open tests/*.html in browser\""
+  },
+  "keywords": ["audio-visualization", "chladni", "canvas", "pwa", "generative-art"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

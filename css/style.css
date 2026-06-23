@@ -1,0 +1,352 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Dual Canvas ===== */
+#canvas-2d,
+#canvas-webgl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#canvas-webgl {
+  z-index: 1;
+}
+
+#canvas-2d {
+  z-index: 2;
+}
+
+/* ===== Interaction Layer ===== */
+#interaction-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  touch-action: none;
+}
+
+/* ===== UI Layer ===== */
+#ui-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#ui-layer > * {
+  pointer-events: auto;
+}
+
+/* ===== Top Bar ===== */
+#top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  gap: 12px;
+  flex-wrap: wrap;
+  z-index: 11;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Shape Tabs */
+#shape-tabs {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.shape-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #aaa;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.shape-btn:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+.shape-btn.active {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 10px rgba(255,255,255,0.08);
+}
+
+/* Audio Controls */
+#audio-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#audio-controls button,
+.file-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ddd;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#audio-controls button:hover,
+.file-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+#share-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/* Perf Badge */
+#perf-badge {
+  position: fixed;
+  bottom: 20px;
+  right: 76px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 200, 60, 0.15);
+  border: 1px solid rgba(255, 200, 60, 0.35);
+  color: #ffc83d;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 13;
+  animation: pulse 2s infinite;
+  cursor: help;
+}
+
+#perf-badge.hidden {
+  display: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.92); }
+}
+
+/* ===== Tweakpane Drawer ===== */
+#tp-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 55vh;
+  overflow-y: auto;
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 12;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+#tp-container.open {
+  transform: translateY(0);
+}
+
+/* Tweakpane dark overrides */
+#tp-container .tp-dfwv {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#tp-container .tp-rotv {
+  background: transparent !important;
+}
+#tp-container .tp-fldv {
+  background: rgba(255,255,255,0.03) !important;
+  border: none !important;
+}
+#tp-container .tp-lblv_l {
+  color: #ccc !important;
+}
+#tp-container .tp-btnv_b {
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+}
+
+/* ===== GUI Toggle ===== */
+#gui-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 13;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#gui-toggle:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+#gui-toggle.active {
+  transform: rotate(90deg);
+  background: rgba(255,255,255,0.2);
+}
+
+/* ===== Start Overlay ===== */
+#start-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,8,0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 0.4s;
+}
+
+#start-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.start-card {
+  text-align: center;
+  padding: 40px 32px;
+  max-width: 360px;
+  width: 90%;
+}
+
+.start-card h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #fff 0%, #a0a0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.start-card p {
+  color: #888;
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+
+.start-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.start-btn {
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+  color: #0a0a0f;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.start-btn.secondary {
+  background: rgba(255,255,255,0.08);
+  color: #ddd;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.start-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 640px) {
+  #top-bar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .brand {
+    font-size: 14px;
+  }
+  .shape-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  #perf-badge {
+    bottom: 16px;
+    right: 70px;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  #audio-controls button,
+  .file-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  #gui-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}

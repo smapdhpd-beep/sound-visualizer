@@ -1,0 +1,19 @@
+# Private / local
+记忆/
+debug/
+.claude/
+SUBSCRIPTIONS.md
+
+# OS
+.DS_Store
+Thumbs.db
+# Dependencies
+node_modules/
+# Logs
+*.log
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+SKILL.md

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sound Visualizer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "tweakpane": "https://cdn.jsdelivr.net/npm/tweakpane@3.1.10/+esm"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- 双 Canvas 层：2D 与 WebGL 重叠，由 JS 控制显隐 -->
+  <canvas id="canvas-2d"></canvas>
+  <canvas id="canvas-webgl"></canvas>
+
+  <!-- 交互捕获层：透明，接收鼠标/触摸 -->
+  <div id="interaction-layer"></div>
+
+  <!-- UI 层：按钮、面板 -->
+  <div id="ui-layer">
+    <header id="top-bar">
+      <div class="brand">Sound Visualizer</div>
+      <nav id="shape-tabs">
+        <button data-shape="circle" class="shape-btn active" title="圆形">○</button>
+        <button data-shape="square" class="shape-btn" title="方形">□</button>
+        <button data-shape="annular" class="shape-btn" title="环形">◎</button>
+        <button data-shape="ellipse" class="shape-btn" title="椭圆">⬭</button>
+        <button data-shape="triangle" class="shape-btn" title="三角">△</button>
+        <button data-shape="hexagon" class="shape-btn" title="六边">⬡</button>
+      </nav>
+      <div id="audio-controls">
+        <label class="file-btn">
+          <input type="file" id="file-input" accept="audio/*" hidden>
+          📁 音乐
+        </label>
+        <button id="mic-btn">🎤 麦克风</button>
+        <button id="snapshot-btn">📷 截图</button>
+        <button id="share-btn" title="复制链接">🔗</button>
+      </div>
+    </header>
+
+    <!-- Tweakpane 容器：底部滑出 -->
+    <div id="tp-container"></div>
+
+    <div id="perf-badge" class="hidden" title="性能模式：已自动降低粒子数">⚡</div>
+    <button id="gui-toggle">⚙️</button>
+  </div>
+
+  <!-- 启动遮罩 -->
+  <div id="start-overlay">
+    <div class="start-card">
+      <h1>Sound Visualizer</h1>
+      <p>选择音频来源开始体验</p>
+      <div class="start-actions">
+        <label class="start-btn">
+          <input type="file" id="start-file" accept="audio/*" hidden>
+          播放本地音乐
+        </label>
+        <button id="start-mic" class="start-btn secondary">使用麦克风</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
